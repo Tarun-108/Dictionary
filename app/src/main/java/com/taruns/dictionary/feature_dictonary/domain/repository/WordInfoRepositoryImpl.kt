@@ -17,7 +17,7 @@ class WordInfoRepositoryImpl(
     override fun getWordInfo(word: String): Flow<Resource<List<WordInfo>>> = flow {
         emit(Resource.Loading())
 
-        val wordInfos = dao.getWordInfo(word).map { it.toWordInfo() }
+        val wordInfos = dao.getWordInfos(word).map { it.toWordInfo() }
         emit(Resource.Loading(data = wordInfos))
 
         try{
@@ -39,7 +39,7 @@ class WordInfoRepositoryImpl(
             ))
         }
 
-        val newWordInfos = dao.getWordInfo(word).map { it.toWordInfo() }
+        val newWordInfos = dao.getWordInfos(word).map { it.toWordInfo() }
         emit(Resource.Success(newWordInfos))
     }
 }
