@@ -3,6 +3,7 @@ package com.taruns.dictionary.feature_dictonary.di
 import android.app.Application
 import androidx.room.Room
 import com.google.gson.Gson
+import com.taruns.dictionary.feature_dictonary.data.local.Converters
 import com.taruns.dictionary.feature_dictonary.data.local.WordInfoDao
 import com.taruns.dictionary.feature_dictonary.data.local.WordInfoDatabase
 import com.taruns.dictionary.feature_dictonary.data.remote.DictionaryApi
@@ -46,7 +47,7 @@ object WordInfoModule {
             app,
             WordInfoDatabase::class.java,
             "words_DB"
-        ).addTypeConverter(GsonParser(Gson())).build()
+        ).addTypeConverter(Converters(GsonParser(Gson()))).build()
     }
 
     @Provides
